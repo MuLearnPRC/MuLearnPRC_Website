@@ -239,6 +239,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // --- Scalable 10-Photo Events Bento Renderer ---
+  const EVENTS_CSV_URL = 'https://docs.google.com/spreadsheets/d/1k9kTBNXbByQWnK34ChZGNjt6FGqRC5smw4g7mYnZXl0/export?format=csv';
   const renderEventsGallery = (photoUrls) => {
     const track = document.getElementById('eventsTrack');
     if (!track || !Array.isArray(photoUrls) || photoUrls.length === 0) return;
@@ -301,5 +302,33 @@ document.addEventListener('DOMContentLoaded', () => {
     // Duplicate for seamless infinite loop
     track.innerHTML = html + html;
   };
+  const loadEventsPhotosFromSheet = () => {
+    if (typeof Papa === 'undefined') return;
+    Papa.parse(EVENTS_CSV_URL, {
+      download: true,
+      header: false,
+      complete: function(results) {
+        const rows = results.data;
+        if (!rows || rows.length === 0) return;
+        const validUrls = [];
+        rows.forEach(row => {
+          const rawUrl = row[0];
+          if (!rawUrl || typeof rawUrl !== 'string') return;
+          const match = rawUrl.match(/d\/([a-zA-Z0-9_-]+)/);
+          if (match && match[1]) {
+            validUrls.push('https://lh3.googleusercontent.com/d/' + match[1]);
+          }
+        });
+        if (validUrls.length > 0) {
+          renderEventsGallery(validUrls);
+        }
+      },
+      error: function(err) {
+        console.warn('Could not load events sheet CSV:', err);
+      }
+    });
+  };
+
+  loadEventsPhotosFromSheet();
   window.renderEventsGallery = renderEventsGallery;
 });
