@@ -1191,6 +1191,57 @@ body {
   transform: scale(1.08);
 }
 
+/* Scalable 10-Photo Bento Group */
+.events-group-10 {
+  display: flex;
+  gap: 8px;
+  height: 100%;
+  flex-shrink: 0;
+}
+
+.photo-frame-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  height: 100%;
+  padding: 12px;
+  pointer-events: none;
+  transition: all var(--transition-fast);
+}
+
+.photo-icon {
+  color: var(--color-primary);
+  opacity: 0.65;
+  transition: all var(--transition-fast);
+}
+
+.photo-frame:hover .photo-icon {
+  opacity: 1;
+  transform: scale(1.15);
+}
+
+.photo-frame:hover .photo-frame-inner span {
+  color: var(--color-primary);
+}
+
+@media (max-width: 768px) {
+  .scrolling-track {
+    height: 250px;
+  }
+  .col-sm {
+    width: 110px;
+  }
+  .col-md {
+    width: 160px;
+  }
+  .col-lg {
+    width: 220px;
+  }
+}
+
 /* ==========================================
    RESPONSIVE DESIGN (MEDIA QUERIES)
    ========================================== */
