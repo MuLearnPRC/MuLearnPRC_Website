@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
   const galleryContainer = document.getElementById('dynamic-gallery');
-  const csvUrl = 'https://docs.google.com/spreadsheets/d/11JIQggHbJm7CDhUfpGlbMKMutcmV6PsINDIS-M9bK78/export?format=csv';
+  const csvUrl = 'https://docs.google.com/spreadsheets/d/1bseK0dgDdbsBYoHn4nx28zqTcbMRFcDA/export?format=csv';
 
   // Create loading state with 3 scrolling wrappers
   let skeletonsHtml = '';
