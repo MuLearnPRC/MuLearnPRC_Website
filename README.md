@@ -147,6 +147,7 @@ MuLEARN-PRC-Website/
 ├── leaderboard.js          # Leaderboard table rendering from CSV
 ├── gallery.js              # Dynamic gallery infinite scroll from CSV
 ├── gallery_urls.json       # Backup gallery image URLs (legacy)
+├── events_urls.json        # Backup event image URLs for 10-photo bento clusters
 │
 ├── assets/                 # Static assets directory
 │   ├── logo.png           # MuLearn PRC logo (used in navbar)
