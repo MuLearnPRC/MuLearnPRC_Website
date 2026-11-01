@@ -1,637 +1,222 @@
-# MuLearn PRC Website
+# MuLearn PRC Official Website
 
-A modern, interactive community website for the MuLearn Providence College of Engineering (PRC) chapter. This site showcases execom members, displays a karma leaderboard, and celebrates the chapter's journey with dynamic animations and a responsive design.
-
-**Live Demo:** [https://mu-learn-prc-website.vercel.app](https://mu-learn-prc-website.vercel.app)
-
----
-
-## Table of Contents
-
-- [Overview](#overview)
-- [Stack](#stack)
-- [Features](#features)
-- [Directory Structure](#directory-structure)
-- [Getting Started](#getting-started)
-  - [Prerequisites](#prerequisites)
-  - [Installation](#installation)
-  - [Configuration](#configuration)
-  - [Running Locally](#running-locally)
-- [Key Components](#key-components)
-- [Data Integration](#data-integration)
-- [Customization](#customization)
-- [Deployment](#deployment)
-- [Browser Support](#browser-support)
-- [Contributing](#contributing)
-- [License](#license)
+> **Official web portal for the μLearn chapter at Providence College of Engineering (PRC).**  
+> Designed and built for seamless community presentation, dynamic member recognition, automated live leaderboard rankings, and scalable event showcases.
 
 ---
 
-## Overview
+## 📋 Manager's Executive Summary
 
-MuLearn PRC Website is a celebration of the learning community built at Providence College of Engineering. It's designed to:
+Welcome to the **MuLearn PRC Website** repository! If you are a chapter lead, technical lead, or website manager taking over maintenance, this document is your complete handbook. 
 
-- **Showcase Leadership:** Display all execom members with photos and roles
-- **Recognize Achievement:** Feature a live karma leaderboard tracking member contributions
-- **Document History:** Present the chapter's journey through a timeline
-- **Share Moments:** Display community photos in an infinitely scrolling gallery
-- **Build Culture:** Share testimonials and highlight the chapter's core values
-- **Enable Connection:** Provide social links and CTA to join the movement
-
-The website is built with vanilla HTML, CSS, and JavaScript for maximum performance and minimal dependencies.
+The website is engineered with a **zero-overhead, serverless static architecture**:
+- **No Build Tools Required:** Pure vanilla HTML5, CSS3, and ES6+ JavaScript. No node build pipelines, bundlers, Webpack, or Vite to configure or break.
+- **Client-Side Live Data:** Dynamic sections (Executive Committee, Karma Leaderboard, Events, and Gallery) fetch directly from **Google Sheets via CSV export**. You can update site content in seconds by editing spreadsheets without touching any code.
+- **Zero-Crop Aspect Ratio Engine:** Adaptive bento framing displays event posters in their native proportions without text truncation or awkward letterbox bars.
+- **Autonomous Dual-Theme Background:** Smooth light/dark video canvas that ping-pongs seamlessly across all viewports.
 
 ---
 
-## Stack
-
-| Component | Technology | Purpose |
-|-----------|-----------|---------|
-| **Markup** | HTML5 | Semantic structure with accessibility in mind |
-| **Styling** | CSS3 | Advanced animations, gradients, glassmorphism effects |
-| **JavaScript** | Vanilla ES6+ | Interactivity, CSV parsing, dynamic rendering, scroll animations |
-| **Animation** | GSAP + ScrollTrigger | Smooth scroll-triggered video scrubbing and transitions |
-| **CSV Parsing** | PapaParse (papaparse.min.js) | Load member & leaderboard data from Google Sheets |
-| **Deployment** | Vercel | Continuous deployment from this repo |
-| **Storage** | Google Drive / Google Sheets | Source of truth for dynamic content |
-
-### Key Libraries
-
-- **GSAP (GreenSock Animation Platform):** Professional-grade animation library with ScrollTrigger plugin for scroll-linked animations
-- **PapaParse:** Lightweight CSV parser for client-side data transformation
-- **Google Fonts:** Inter (body) and Outfit (headings) for modern typography
-
----
-
-## Features
-
-### 🎨 **Visual Design**
-
-- **Dual Theme:** Light and dark mode with smooth transitions
-- **Video Background:** Autonomous 16s forward-and-reverse (ping-pong) looping video with responsive 9:16 mobile framing and desktop cover cropping
-- **Glassmorphism:** Frosted glass cards with backdrop blur effects
-- **Animated Blobs:** Floating purple gradient blobs for visual depth
-- **Responsive Layout:** Mobile-first design that works seamlessly on all screen sizes
-- **Custom Scrollbar:** Themed scrollbar that matches the design system
-
-### 👥 **Execom Members**
-
-- Dynamic card grid loaded from Google Sheets
-- Member photos with fallback initials
-- Role display and hover effects
-- Automatic member count updates
-- Google Drive photo link optimization for performance
-
-### 🏆 **Karma Leaderboard**
-
-- Live-updated ranking system from Google Sheets CSV
-- Medal badges for top 3 (🥇🥈🥉)
-- Member avatars with initials and level badges
-- Animated karma point count-up animation
-- Scrollable table with sticky headers
-- Color-coded highlights for top performers
-
-### 📸 **Events (Scalable Adaptive Aspect-Ratio Bento Layout)**
-
-- Scalable horizontal marquee designed with an intelligent balanced bento rhythm (Full-Height Hero ↔ 2-Stacked Paired Columns)
-- **Zero-Crop Aspect Ratio Framing**: Each frame dynamically shrink-wraps the exact aspect ratio of each image (1:1 square, 4:5 portrait, 3:4 portrait, or landscape), ensuring 100% of event artwork and text is visible without letterboxing bars or cropped edges
-- **Arbitrary Photo Scalability**: Seamlessly scales from 10 photos to 50+ photos dynamically loaded from the live Google Sheet
-- Glassmorphic photo frames with neon hover scale, purple glow, and hover-to-pause marquee animation
-- Seamless 50% translation infinite loop
-
-### 📸 **Gallery**
-
-- Infinite horizontal scrolling photo grid
-- Three-row bento-style layout with varied aspect ratios
-- Lazy loading for performance
-- Different scroll speeds per row for depth effect
-- Loads images from Google Sheets CSV
-- Seamless loop with duplicated content sets
-
-### 📅 **Timeline**
-
-- Chapter milestones from 2022 to present
-- Visual connection line with interactive dots
-- Responsive horizontal layout
-
-### 💬 **Community Voices**
-
-- Testimonials section showcasing member feedback
-- Grid layout with quote cards
-- Highlights community culture and benefits
-
-### 🔗 **Navigation**
-
-- Fixed header that stays stationary throughout page scrolling with smooth navigation
-- Mobile drawer menu with smooth slide-in animation
-- Active link highlighting based on scroll position
-- Theme toggle button with persistent storage
-- Responsive breakpoints for tablet and mobile
-
-### 📱 **Responsive Design**
-
-- Desktop: Full multi-column layouts
-- Tablet: Optimized spacing and touch targets
-- Mobile: Single column, touch-friendly drawer menu
-- All animations remain smooth on lower-powered devices
-
----
-
-## Directory Structure
+## 🗂️ Repository Structure
 
 ```
-MuLEARN-PRC-Website/
-├── index.html              # Main HTML structure with semantic sections
-├── style.css               # Complete styling with light/dark themes
-├── app.js                  # Core app logic: theme toggle, navigation, continuous background video
-├── execom.js               # Member card generation from CSV
-├── leaderboard.js          # Leaderboard table rendering from CSV
-├── gallery.js              # Dynamic gallery infinite scroll from CSV
-├── gallery_urls.json       # Backup gallery image URLs (legacy)
-├── events_urls.json        # Backup event image URLs for 10-photo bento clusters
+MuLearnPRC_Website/
+├── index.html              # Main HTML entry point containing all section structures
+├── style.css               # Unified styling (design tokens, layout, themes, bento grid)
+├── app.js                  # Core controller: theme toggling, mobile drawer, Events bento engine
+├── execom.js               # Fetches & renders Executive Committee member cards from CSV
+├── leaderboard.js          # Fetches, sorts & animates the Karma Leaderboard from CSV
+├── gallery.js              # Fetches & renders the 3-row horizontal infinite gallery from CSV
 │
-├── assets/                 # Static assets directory
-│   ├── logo.png           # MuLearn PRC logo (used in navbar)
-│   ├── hero_team.png      # Hero section team photo
-│   ├── Lightmode/         # Light theme video frames
+├── events_urls.json        # Offline backup of Event poster URLs
+├── gallery_urls.json       # Offline backup of Gallery showcase URLs
+│
+├── assets/                 # Static media assets
+│   ├── logo.png            # Chapter μLearn brand logo (navbar)
+│   ├── hero_team.png       # Hero section featured team banner
+│   ├── Lightmode/          # Light theme assets
 │   │   └── Lightmode_smooth.mp4
-│   └── Darkmode/          # Dark theme video frames
+│   └── Darkmode/           # Dark theme assets
 │       └── Darkmode_smooth.mp4
 │
-├── frames/                 # Video frame references (for potential rebuilds)
-│   ├── 6s.jpg
-│   ├── 7s.jpg
-│   ├── 8s.jpg
-│   ├── 9s.jpg
-│   └── 10s.jpg
-│
-├── gsap.min.js            # GSAP animation library
-├── ScrollTrigger.min.js    # GSAP scroll-trigger plugin
-├── papaparse.min.js       # CSV parsing library
-│
-└── README.md              # This file
+├── frames/                 # Source video frame stills
+├── gsap.min.js             # GSAP animation core library
+├── ScrollTrigger.min.js     # GSAP ScrollTrigger plugin
+├── papaparse.min.js        # High-performance client-side CSV parser
+└── README.md               # Manager's handbook & documentation
 ```
-
-### Key File Descriptions
-
-| File | Purpose |
-|------|---------|
-| `index.html` | Semantic HTML structure with all sections and dynamic containers |
-| `style.css` | 1000+ lines of CSS with design tokens, animations, responsive grid |
-| `app.js` | Theme management, continuous background video loop, navigation active states |
-| `execom.js` | Fetches member CSV from Google Sheets, renders card grid dynamically |
-| `leaderboard.js` | Parses karma leaderboard CSV, sorts by rank, renders table with avatars |
-| `gallery.js` | Loads gallery URLs from Google Sheets, creates three infinite scroll tracks |
 
 ---
 
-## Getting Started
+## 🛠️ Technology Stack
 
-### Prerequisites
+| Layer | Technology | Role & Purpose |
+| :--- | :--- | :--- |
+| **Markup** | HTML5 (Semantic) | Accessible sections, modular containers, responsive meta |
+| **Styling** | CSS3 & Custom Properties | Glassmorphism, animations, responsive flex/grid layouts |
+| **Logic** | Vanilla JavaScript (ES6+) | Direct DOM manipulation, async CSV fetching, dynamic rendering |
+| **Data Parsing** | PapaParse (`papaparse.min.js`) | Fast browser-side CSV streaming and record transformation |
+| **Animation** | GSAP & ScrollTrigger | Scroll-linked triggers, smooth video scrubbing, count-ups |
+| **Data Storage** | Google Sheets | Live, no-code CMS for leads and chapter managers |
+| **Asset Delivery**| Google Drive / Google CDN | Direct image and poster hosting (`lh3.googleusercontent.com`) |
 
-- Any modern web browser (Chrome, Firefox, Safari, Edge)
-- For local development:
-  - A code editor (VS Code recommended)
-  - Node.js/npm (optional, for local server)
-  - Git
+---
 
-### Installation
+## 📊 Live Google Sheets Data Integration (Manager's Guide)
 
+The website uses Google Sheets as a headless CMS. All changes made in the linked Google Sheets reflect on the website immediately upon page refresh.
+
+### Connected Google Sheets Overview
+
+| Section | Script File | Active Google Sheet ID | Purpose |
+| :--- | :--- | :--- | :--- |
+| **Execom Members** | `execom.js` | `15HUWRhfpYHVxINOAzEvz2eF0t3o5EHgj` | Leadership team cards and roles |
+| **Karma Leaderboard** | `leaderboard.js` | `1aZSfgWH9AKmDjOsUasiYE29tMsAC8jR1` | Student karma rankings, points, and badges |
+| **Events Marquee** | `app.js` | `1k9kTBNXbByQWnK34ChZGNjt6FGqRC5smw4g7mYnZXl0` | 10+ photo adaptive bento marquee |
+| **Dynamic Gallery** | `gallery.js` | `1bseK0dgDdbsBYoHn4nx28zqTcbMRFcDA` | 3-row infinite showcase photo stream |
+
+---
+
+### Sheet Schemas & Formatting Rules
+
+#### 1. Execom Sheet (`execom.js`)
+- **Configured at:** `execom.js` (Line 2: `CSV_URL`)
+- **Expected Columns (Case-Sensitive):**
+  ```csv
+  Team,Role,Name,Photo Link
+  Campus Leadership,Campus Lead,Georgy Benoy,https://drive.google.com/uc?id=...
+  Campus Leadership,Campus Co-Lead,Jesty Jose,https://drive.google.com/uc?id=...
+  ```
+- **Photo Link:** Direct Google Drive link. The script automatically converts standard sharing links into high-speed Google User Content endpoints (`lh3.googleusercontent.com/d/{ID}`).
+- **Initials Fallback:** If a photo is missing or fails to load, the card automatically falls back to an elegant circular avatar with the member's initials.
+
+#### 2. Karma Leaderboard Sheet (`leaderboard.js`)
+- **Configured at:** `leaderboard.js` (Line 2: `CSV_URL`)
+- **Expected Columns (Case-Sensitive):**
+  ```csv
+  full_name,muid,karma,rank,level,join_date,last_karma_gained,graduation_year,department,is_alumni,ig_count,lc_count
+  ```
+- **Top 3 Highlighting:** The leaderboard script automatically detects ranks 1, 2, and 3, awarding gold, silver, and bronze medal badges (🥇🥈🥉).
+- **Point Animations:** When the user scrolls into the leaderboard, the karma point numbers dynamically animate upwards.
+
+#### 3. Events Marquee Sheet (`app.js`)
+- **Configured at:** `app.js` (Line 242: `EVENTS_CSV_URL`)
+- **Expected Structure:** Single column of Google Drive image sharing URLs in Column A:
+  ```csv
+  https://drive.google.com/file/d/{FILE_ID}/view?usp=sharing
+  https://drive.google.com/file/d/{FILE_ID}/view?usp=sharing
+  ```
+- **Aspect Ratio Handling:** The Events engine automatically detects image ratios and paces them into a balanced bento rhythm (Full-Height Hero ↔ 2-Stacked Paired Column).
+- **Scalability:** Supports any number of photos $N$ (10, 15, 30, 50+).
+
+#### 4. Gallery Sheet (`gallery.js`)
+- **Configured at:** `gallery.js` (Line 3: `csvUrl`)
+- **Expected Structure:** Single column of Google Drive image sharing links:
+  ```csv
+  https://drive.google.com/file/d/{FILE_ID}/view?usp=sharing
+  https://drive.google.com/file/d/{FILE_ID}/view?usp=sharing
+  ```
+- **Triple-Track Scrolling:** Images are distributed across three horizontal tracks scrolling in alternating directions at varying speeds.
+
+---
+
+### ⚠️ Google Drive Link Optimization
+
+Google Drive links formatted as `https://drive.google.com/uc?export=view&id=...` often trigger 302 redirects and cross-site tracking blocks in modern browsers.
+
+All scripts in this codebase automatically transform URLs to:
+```
+https://lh3.googleusercontent.com/d/{FILE_ID}
+```
+This directly accesses Google's CDN edge cache, guaranteeing instant image loading, zero cookie warnings, and zero tracking prevention blocks.
+
+> **Crucial Setting:** Make sure any Google Sheet or Google Drive folder/file used for the site is set to **"Anyone with the link can view"** in Google Drive sharing permissions.
+
+---
+
+## 💻 Local Development & Testing
+
+Since this project requires no compiler or package manager, getting started takes less than 30 seconds.
+
+### 1. Clone the Repository
 ```bash
-# Clone the repository
-git clone https://github.com/RYuK006/MuLEARN-PRC-Website.git
-
-# Navigate to directory
-cd MuLEARN-PRC-Website
-
-# No npm install needed! All dependencies are loaded via CDN
+git clone https://github.com/MuLearnPRC/MuLearnPRC_Website.git
+cd MuLearnPRC_Website
 ```
 
-### Configuration
+### 2. Run a Local Server
+Because modern browsers restrict cross-origin `fetch()` and `PapaParse` requests from the `file://` protocol, you should view the site through a local HTTP server:
 
-#### Update Google Sheets URLs
-
-The site pulls live data from Google Sheets. To configure your own data sources, update these URLs in the JavaScript files:
-
-**execom.js** (Line 2)
-```javascript
-const CSV_URL = 'https://docs.google.com/spreadsheets/d/{YOUR_SHEET_ID}/export?format=csv';
-```
-
-**leaderboard.js** (Line 2)
-```javascript
-const CSV_URL = 'https://docs.google.com/spreadsheets/d/{YOUR_SHEET_ID}/export?format=csv';
-```
-
-**gallery.js** (Line 3)
-```javascript
-const csvUrl = 'https://docs.google.com/spreadsheets/d/{YOUR_SHEET_ID}/export?format=csv';
-```
-
-#### Google Sheets Format
-
-**Members Sheet** (Execom)
-```csv
-Name,Role,Photo Link
-John Doe,President,https://drive.google.com/file/d/...
-Jane Smith,Vice President,https://drive.google.com/file/d/...
-```
-
-**Leaderboard Sheet**
-```csv
-rank,full_name,muid,karma,level
-1,Alice Johnson,MU001,5000,lvl3
-2,Bob Williams,MU002,4800,lvl3
-```
-
-**Gallery Sheet** (Single column of Google Drive links)
-```csv
-Photo URL
-https://drive.google.com/file/d/...
-https://drive.google.com/file/d/...
-```
-
-### Running Locally
-
-**Option 1: Using Python's built-in server**
+**Option A (Python 3):**
 ```bash
-# Python 3
 python -m http.server 8000
-
-# Python 2
-python -m SimpleHTTPServer 8000
-
-# Open http://localhost:8000 in browser
+# Open http://localhost:8000 in your browser
 ```
 
-**Option 2: Using Node.js live-server**
+**Option B (Node.js npx):**
 ```bash
-npm install -g live-server
-live-server
+npx serve .
+# Or: npx live-server
 ```
 
-**Option 3: Direct file opening**
-```bash
-# Simply open index.html in your browser
-open index.html
-```
+**Option C (VS Code Extension):**
+Install the **Live Server** extension in VS Code, right-click `index.html`, and select **"Open with Live Server"**.
 
 ---
 
-## Key Components
+## 🎨 Design System & Customization
 
-### Theme System
-
-The site uses CSS custom properties (variables) with a `data-theme` attribute for light/dark mode switching:
-
+### 1. Theme Configuration
+The site supports both light and dark themes via CSS custom properties on `:root` and `[data-theme="dark"]` in `style.css`:
 ```css
 :root {
-  --color-primary: #7c3aed;        /* Purple */
-  --color-dark: #1e293b;           /* Dark text */
-  /* ... 20+ more variables */
+  --color-primary: #7c3aed;        /* Vibrant Purple */
+  --color-primary-hover: #9333ea;  /* Hover state */
+  --color-bg-card: rgba(255, 255, 255, 0.7);
+  --border-radius-md: 16px;
 }
 
 [data-theme="dark"] {
-  --color-primary: #5b21b6;        /* Lighter purple in dark */
-  --color-dark: #ffffff;           /* White text */
-  /* ... overrides */
+  --color-bg-card: rgba(255, 255, 255, 0.05);
+  --color-border: rgba(124, 58, 237, 0.25);
 }
 ```
+The selected theme is saved in `localStorage('theme')` and crossfades the background canvas video.
 
-Toggle is persisted to `localStorage` and synced across all theme toggles on the page.
+### 2. Header Navigation
+- **Fixed Position:** The navigation bar is set to `position: fixed` with frosted blur (`backdrop-filter: blur(12px)`), remaining visible across full-page scrolling.
+- **Main Offset:** `.main-content` includes top padding (`padding-top: 76px`) to prevent content from hiding beneath the header.
 
-### Background Video Ping-Pong Loop
-
-The background video plays autonomously without requiring scroll interaction, smoothly ping-ponging forward and in reverse in a seamless loop:
-
-```html
-<video id="scrollVideo" class="scroll-canvas" autoplay loop muted playsinline preload="auto"></video>
-```
-
-- **Phones (Portrait):** Displays full 9:16 vertical aspect ratio.
-- **Laptops & Desktops:** Crops gracefully with `object-fit: cover` and centered positioning.
-- **Theme Transitions:** Automatically crossfades between light and dark theme background videos upon toggle.
-
-The site includes optimized MP4 videos for light and dark modes.
-
-### CSV Data Loading
-
-All member, leaderboard, and gallery data is loaded client-side using PapaParse:
-
-```javascript
-Papa.parse(CSV_URL, {
-  download: true,
-  header: true,
-  complete: function(results) {
-    renderLeaderboard(results.data);
-  }
-});
-```
-
-This approach eliminates backend complexity while keeping data in a familiar Google Sheets interface.
-
-### Mobile Navigation Drawer
-
-Smooth slide-in drawer that overlays on mobile:
-
-```javascript
-const openDrawer = () => {
-  mobileDrawer.classList.add('open');
-  document.body.style.overflow = 'hidden';  // Prevent background scroll
-};
-```
-
-Drawer closes on:
-- Close button click
-- Nav link click (smooth scroll)
-- Outside click (backdrop dismiss)
-
-### Infinite Gallery Scroll
-
-Three horizontal scroll tracks with different animations:
-
-```javascript
-// Track 1: scrollLeft, 60s duration
-// Track 2: scrollRight, 50s duration  
-// Track 3: scrollLeft, 55s duration
-```
-
-Each set of images is duplicated to create seamless looping:
-```css
-@keyframes scrollLeft {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
-}
-```
+### 3. Cache Management
+When updating JavaScript or CSS files, increment the cache-buster query parameter in `index.html` (e.g. `style.css?v=8`, `app.js?v=7`) so returning users immediately receive the new code without caching issues.
 
 ---
 
-## Data Integration
+## 🔍 Troubleshooting Guide for Managers
 
-### How Member Cards Are Generated
+### 1. Member cards or Leaderboard show "Loading..." or fail to appear
+- **Cause:** Google Sheet permission is private or column names were modified.
+- **Fix:** Open the sheet → Click **Share** → Ensure General Access is **"Anyone with the link can view"**. Verify column names match the schema listed above.
 
-1. **Fetch:** `execom.js` fetches CSV from Google Sheets
-2. **Parse:** PapaParse transforms CSV rows into JavaScript objects
-3. **Transform:** Extract name, role, and photo link; generate initials
-4. **Render:** Create HTML cards with fallback avatar colors
-5. **Display:** Insert into `#execom-cards-container`
-6. **Refresh:** Notify GSAP ScrollTrigger of DOM height changes
+### 2. An image fails to load or shows a broken placeholder icon
+- **Cause:** The Google Drive image is either not shared publicly, or the file ID is invalid.
+- **Fix:** In Google Drive, ensure the file or folder is set to public view. The site automatically displays a fallback avatar with initials or a camera placeholder so the layout never breaks.
 
-### Google Drive Image Optimization
-
-The site uses a workaround to bypass browser blocking of Google Drive thumbnail redirects:
-
-```javascript
-// Transform Google Drive link
-// FROM: https://drive.google.com/file/d/FILE_ID/view
-// TO:   https://lh3.googleusercontent.com/d/FILE_ID
-```
-
-This ensures photos load reliably without 302 redirect tracking.
-
-### Leaderboard Ranking
-
-Leaderboard renders sorted by rank with special handling:
-- **Top 3:** Display medal emojis (🥇🥈🥉)
-- **Top 3 points:** Highlighted in primary color
-- **Level badges:** Color-coded with background pill shape
-- **Count-up animation:** Points animate when section comes into view
+### 3. Background video is static or black
+- **Cause:** Browser autoplay policy blocked video playback, or video files were renamed.
+- **Fix:** Ensure `video.muted = true` (autoplay requires muted state). Verify `assets/Lightmode/Lightmode_smooth.mp4` and `assets/Darkmode/Darkmode_smooth.mp4` are present.
 
 ---
 
-## Customization
-
-### Changing Colors
-
-Update CSS custom properties in `style.css`:
-
-```css
-:root {
-  --color-primary: #7c3aed;        /* Change this purple */
-  --color-accent: #a78bfa;         /* Change this accent */
-  /* ... other colors */
-}
-```
-
-All components automatically use these variables.
-
-### Updating Member Count
-
-Hardcoded number on hero section is automatically updated by `execom.js`:
-```javascript
-if (heroCount) heroCount.innerText = data.length;
-if (statsCount) statsCount.innerText = data.length;
-```
-
-### Changing Fonts
-
-Google Fonts are loaded in the `<head>`. Swap font names:
-
-```html
-<link href="https://fonts.googleapis.com/css2?family=YourFont:wght@400;600;700&display=swap" rel="stylesheet">
-```
-
-Then update CSS variables:
-```css
---font-heading: 'YourFont', sans-serif;
---font-body: 'YourFont', sans-serif;
-```
-
-### Adjusting Animation Speeds
-
-All animation durations use CSS custom properties or inline styles:
-
-```css
---transition-fast: 0.2s;
---transition-normal: 0.3s;
-```
-
-Or modify animation specific timings:
-```javascript
-// Gallery scroll duration
-buildTrackHtml(chunk1, 'scrollLeft', 60);  // 60 seconds
-```
-
----
-
-## Deployment
-
-The site is deployed on **Vercel** with zero-config setup:
-
-### Auto-Deploy via Vercel
-
-1. **Connect Repository**
-   ```bash
-   vercel --prod
-   ```
-
-2. **Environment Setup**
-   - No environment variables needed
-   - All data sourced from public Google Sheets
-
-3. **Custom Domain**
-   - Point your domain to Vercel nameservers
-   - Auto-HTTPS with Let's Encrypt
-
-4. **Continuous Deployment**
-   - Every push to `main` auto-deploys
-   - Preview deployments for pull requests
-
-### Manual Build (if needed)
-
-Since this is a static site, no build step is required:
-```bash
-# The repo is ready to deploy as-is
-# All files are served directly (HTML, CSS, JS, assets)
-```
-
-### Performance Considerations
-
-- ✅ All assets are static (no server-side rendering)
-- ✅ Videos are optimized MP4s (~10MB total)
-- ✅ Images use lazy loading in gallery
-- ✅ Minified JavaScript libraries
-- ✅ CSS variables reduce file size via compression
-- ✅ CDN-loaded external libraries (GSAP, PapaParse)
-
----
-
-## Browser Support
-
-| Browser | Version | Status |
-|---------|---------|--------|
-| Chrome | Latest | ✅ Full support |
-| Firefox | Latest | ✅ Full support |
-| Safari | 12+ | ✅ Full support |
-| Edge | 79+ | ✅ Full support |
-| IE 11 | Any | ❌ Not supported |
-| Mobile Chrome | Latest | ✅ Full support |
-| Mobile Safari | 12+ | ✅ Full support |
-
-**Features requiring modern browsers:**
-- CSS Grid & Flexbox
-- CSS Custom Properties
-- Promise & Fetch API
-- IntersectionObserver
-- LocalStorage
-
----
-
-## Performance Metrics
-
-| Metric | Target | Status |
-|--------|--------|--------|
-| Largest Contentful Paint (LCP) | < 2.5s | ✅ ~1.8s |
-| First Input Delay (FID) | < 100ms | ✅ ~50ms |
-| Cumulative Layout Shift (CLS) | < 0.1 | ✅ ~0.05 |
-| Page Size | < 5MB | ✅ ~3MB |
-| Initial Load | < 3s | ✅ ~2s |
-
----
-
-## Troubleshooting
-
-### Google Sheets CSV not loading
-
-**Problem:** Member/leaderboard/gallery sections show "Failed to load data"
-
-**Solution:**
-1. Verify the Google Sheet is **publicly accessible**
-   - Right-click sheet → Share → "Anyone with the link"
-2. Check CSV export URL format:
-   ```
-   https://docs.google.com/spreadsheets/d/{SHEET_ID}/export?format=csv
-   ```
-3. Check browser console for CORS errors (shouldn't occur with Google Sheets)
-4. Verify column names match expectations (case-sensitive)
-
-### Video not playing or looping
-
-**Problem:** Background video is paused or static
-
-**Solution:**
-1. Check that autoplay policies allow muted autoplay (`video.muted = true`)
-2. Verify video files exist at `assets/Lightmode/Lightmode_smooth.mp4` and `assets/Darkmode/Darkmode_smooth.mp4`
-3. Check browser console for video decoding or file access errors
-
-### Photos not loading in cards/leaderboard
-
-**Problem:** Avatar circles show colored background instead of photo
-
-**Solution:**
-1. Verify Google Drive links are accessible
-2. Check if link format needs conversion to `lh3.googleusercontent.com`
-3. Try opening link directly in browser (should show image)
-4. Check Google Drive file isn't in a shared folder (use direct file link)
-
-### Mobile menu stuck open
-
-**Problem:** Navigation drawer won't close on mobile
-
-**Solution:**
-1. Open browser DevTools → Console → `mobileDrawer.classList.remove('open')`
-2. Hard refresh (Ctrl+Shift+R / Cmd+Shift+R)
-3. Clear browser cache for the domain
-
----
-
-## Contributing
-
-Contributions are welcome! Please:
-
-1. **Fork** the repository
-2. **Create a feature branch** (`git checkout -b feature/your-feature`)
-3. **Make changes** and test in browser
-4. **Commit with clear messages** (`git commit -m "Add feature: description"`)
-5. **Push** to your fork (`git push origin feature/your-feature`)
-6. **Open a Pull Request** with description of changes
-
-### Code Style
-
-- Use **semantic HTML5** elements
-- Write **vanilla JavaScript** (no frameworks)
-- Use **CSS custom properties** for theming
-- Add **comments** for complex logic
-- Keep **functions small and focused**
-- Test on **mobile and desktop**
-
----
-
-## License
-
-This project is open source and available under the **MIT License**.
-
-You are free to:
-- ✅ Use this code for personal or commercial projects
-- ✅ Modify and adapt it
-- ✅ Distribute copies
-- ✅ Include in your own projects
-
-**Conditions:**
-- Include the MIT license with any distribution
-- Provide attribution to original author
-
----
-
-## Credits
-
-**Built by:** RYuK006  
-**Hosted on:** Vercel  
-**Data managed via:** Google Sheets  
-**Animations powered by:** GSAP  
-**Community:** MuLearn PRC  
-
----
-
-## Connect
-
-- 🌐 **Website:** https://mu-learn-prc-website.vercel.app
-- 📧 **Email:** prc.mulearn@providence.edu.in
-- 🌍 **MuLearn:** https://mulearn.org
-- 📱 **Instagram:** [@mulearn.prc](https://instagram.com/mulearn.prc)
-- 💼 **LinkedIn:** [MuLearn PRC](https://www.linkedin.com/company/mulearn-prc/)
-
----
-
-**Last Updated:** September 2026  
-**Version:** 1.0.0  
-**Status:** Active & Maintained
+## 🤝 Contribution & Governance
+
+- **Repository:** [`MuLearnPRC/MuLearnPRC_Website`](https://github.com/MuLearnPRC/MuLearnPRC_Website)
+- **Primary Branch:** `main`
+- **Author:** **RYuK006**
+- **Community:** [μLearn](https://mulearn.org) • Providence College of Engineering (PRC)
+
+### Recommended Workflow for Updates
+1. Pull latest changes: `git pull origin main`
+2. Test changes locally via a local HTTP server
+3. Commit with concise, descriptive commit messages
+4. Push directly to `main`
