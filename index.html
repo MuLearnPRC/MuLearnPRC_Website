@@ -12,7 +12,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   
   <!-- Stylesheets -->
-  <link rel="stylesheet" href="style.css?v=5">
+  <link rel="stylesheet" href="style.css?v=6">
   
   <!-- GSAP & ScrollTrigger -->
   <script src="gsap.min.js"></script>
@@ -285,55 +285,167 @@
     </div>
     
     <div class="scrolling-wrapper">
-      <div class="scrolling-track" style="align-items: center;">
-        <!-- Original Set -->
-        <div class="photo-col col-lg">
-          <div class="photo-frame">Add Photo</div>
-        </div>
-        <div class="photo-col col-md">
-          <div class="photo-frame">Add Photo</div>
-          <div class="photo-frame">Add Photo</div>
-        </div>
-        <div class="photo-col col-sm">
-          <div class="photo-frame" style="flex: 1;">Add Photo</div>
-          <div class="photo-frame" style="flex: 2;">Add Photo</div>
-        </div>
-        <div class="photo-col col-lg">
-          <div class="photo-frame" style="flex: 2;">Add Photo</div>
-          <div class="photo-row" style="flex: 1;">
-            <div class="photo-frame">Add Photo</div>
-            <div class="photo-frame">Add Photo</div>
+      <div class="scrolling-track" id="eventsTrack" style="align-items: center;">
+        <!-- Set 1 (Scalable 10-Photo Bento Cluster) -->
+        <div class="events-group-10">
+          <!-- Col 1: 2 Photos (Stacked) -->
+          <div class="photo-col col-md">
+            <div class="photo-frame" data-index="1">
+              <div class="photo-frame-inner">
+                <svg class="photo-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="4" ry="4"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
+                <span>Add Photo</span>
+              </div>
+            </div>
+            <div class="photo-frame" data-index="2">
+              <div class="photo-frame-inner">
+                <svg class="photo-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="4" ry="4"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
+                <span>Add Photo</span>
+              </div>
+            </div>
+          </div>
+          <!-- Col 2: 2 Photos (Vertical Split) -->
+          <div class="photo-col col-sm">
+            <div class="photo-frame" style="flex: 1;" data-index="3">
+              <div class="photo-frame-inner">
+                <svg class="photo-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="4" ry="4"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
+                <span>Add Photo</span>
+              </div>
+            </div>
+            <div class="photo-frame" style="flex: 1.5;" data-index="4">
+              <div class="photo-frame-inner">
+                <svg class="photo-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="4" ry="4"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
+                <span>Add Photo</span>
+              </div>
+            </div>
+          </div>
+          <!-- Col 3: 3 Photos (Featured Top + Dual Bottom) -->
+          <div class="photo-col col-lg">
+            <div class="photo-frame" style="flex: 1.5;" data-index="5">
+              <div class="photo-frame-inner">
+                <svg class="photo-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="4" ry="4"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
+                <span>Add Photo</span>
+              </div>
+            </div>
+            <div class="photo-row" style="flex: 1;">
+              <div class="photo-frame" data-index="6">
+                <div class="photo-frame-inner">
+                  <svg class="photo-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="4" ry="4"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
+                  <span>Add Photo</span>
+                </div>
+              </div>
+              <div class="photo-frame" data-index="7">
+                <div class="photo-frame-inner">
+                  <svg class="photo-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="4" ry="4"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
+                  <span>Add Photo</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Col 4: 2 Photos (Stacked) -->
+          <div class="photo-col col-md">
+            <div class="photo-frame" style="flex: 1.3;" data-index="8">
+              <div class="photo-frame-inner">
+                <svg class="photo-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="4" ry="4"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
+                <span>Add Photo</span>
+              </div>
+            </div>
+            <div class="photo-frame" style="flex: 1;" data-index="9">
+              <div class="photo-frame-inner">
+                <svg class="photo-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="4" ry="4"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
+                <span>Add Photo</span>
+              </div>
+            </div>
+          </div>
+          <!-- Col 5: 1 Photo (Full-Height Feature Frame) -->
+          <div class="photo-col col-lg">
+            <div class="photo-frame" data-index="10">
+              <div class="photo-frame-inner">
+                <svg class="photo-icon" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="4" ry="4"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
+                <span>Add Photo</span>
+              </div>
+            </div>
           </div>
         </div>
-        <div class="photo-col col-sm">
-          <div class="photo-frame">Add Photo</div>
-          <div class="photo-frame">Add Photo</div>
-          <div class="photo-frame">Add Photo</div>
-        </div>
-        
-        <!-- Duplicated Set for Infinite Scroll -->
-        <div class="photo-col col-lg">
-          <div class="photo-frame">Add Photo</div>
-        </div>
-        <div class="photo-col col-md">
-          <div class="photo-frame">Add Photo</div>
-          <div class="photo-frame">Add Photo</div>
-        </div>
-        <div class="photo-col col-sm">
-          <div class="photo-frame" style="flex: 1;">Add Photo</div>
-          <div class="photo-frame" style="flex: 2;">Add Photo</div>
-        </div>
-        <div class="photo-col col-lg">
-          <div class="photo-frame" style="flex: 2;">Add Photo</div>
-          <div class="photo-row" style="flex: 1;">
-            <div class="photo-frame">Add Photo</div>
-            <div class="photo-frame">Add Photo</div>
+
+        <!-- Set 2 (Duplicated 10-Photo Bento Cluster for Seamless Infinite Marquee) -->
+        <div class="events-group-10">
+          <!-- Col 1: 2 Photos (Stacked) -->
+          <div class="photo-col col-md">
+            <div class="photo-frame" data-index="1">
+              <div class="photo-frame-inner">
+                <svg class="photo-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="4" ry="4"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
+                <span>Add Photo</span>
+              </div>
+            </div>
+            <div class="photo-frame" data-index="2">
+              <div class="photo-frame-inner">
+                <svg class="photo-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="4" ry="4"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
+                <span>Add Photo</span>
+              </div>
+            </div>
           </div>
-        </div>
-        <div class="photo-col col-sm">
-          <div class="photo-frame">Add Photo</div>
-          <div class="photo-frame">Add Photo</div>
-          <div class="photo-frame">Add Photo</div>
+          <!-- Col 2: 2 Photos (Vertical Split) -->
+          <div class="photo-col col-sm">
+            <div class="photo-frame" style="flex: 1;" data-index="3">
+              <div class="photo-frame-inner">
+                <svg class="photo-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="4" ry="4"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
+                <span>Add Photo</span>
+              </div>
+            </div>
+            <div class="photo-frame" style="flex: 1.5;" data-index="4">
+              <div class="photo-frame-inner">
+                <svg class="photo-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="4" ry="4"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
+                <span>Add Photo</span>
+              </div>
+            </div>
+          </div>
+          <!-- Col 3: 3 Photos (Featured Top + Dual Bottom) -->
+          <div class="photo-col col-lg">
+            <div class="photo-frame" style="flex: 1.5;" data-index="5">
+              <div class="photo-frame-inner">
+                <svg class="photo-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="4" ry="4"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
+                <span>Add Photo</span>
+              </div>
+            </div>
+            <div class="photo-row" style="flex: 1;">
+              <div class="photo-frame" data-index="6">
+                <div class="photo-frame-inner">
+                  <svg class="photo-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="4" ry="4"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
+                  <span>Add Photo</span>
+                </div>
+              </div>
+              <div class="photo-frame" data-index="7">
+                <div class="photo-frame-inner">
+                  <svg class="photo-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="4" ry="4"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
+                  <span>Add Photo</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Col 4: 2 Photos (Stacked) -->
+          <div class="photo-col col-md">
+            <div class="photo-frame" style="flex: 1.3;" data-index="8">
+              <div class="photo-frame-inner">
+                <svg class="photo-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="4" ry="4"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
+                <span>Add Photo</span>
+              </div>
+            </div>
+            <div class="photo-frame" style="flex: 1;" data-index="9">
+              <div class="photo-frame-inner">
+                <svg class="photo-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="4" ry="4"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
+                <span>Add Photo</span>
+              </div>
+            </div>
+          </div>
+          <!-- Col 5: 1 Photo (Full-Height Feature Frame) -->
+          <div class="photo-col col-lg">
+            <div class="photo-frame" data-index="10">
+              <div class="photo-frame-inner">
+                <svg class="photo-icon" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="4" ry="4"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
+                <span>Add Photo</span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
