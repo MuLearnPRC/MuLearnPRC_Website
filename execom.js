@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-  const CSV_URL = 'https://docs.google.com/spreadsheets/d/1ZYYd6idMVJYUhMfbvNtAL3jiyHmxmERQHcVTI2ybyZQ/export?format=csv';
+  const CSV_URL = 'https://docs.google.com/spreadsheets/d/15HUWRhfpYHVxINOAzEvz2eF0t3o5EHgj/export?format=csv';
   const execomContainer = document.getElementById('execom-cards-container');
 
   if (!execomContainer) return;
