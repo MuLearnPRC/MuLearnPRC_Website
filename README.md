@@ -113,7 +113,7 @@ The website is built with vanilla HTML, CSS, and JavaScript for maximum performa
 
 ### 🔗 **Navigation**
 
-- Sticky header with smooth scroll navigation
+- Fixed header that stays stationary throughout page scrolling with smooth navigation
 - Mobile drawer menu with smooth slide-in animation
 - Active link highlighting based on scroll position
 - Theme toggle button with persistent storage
