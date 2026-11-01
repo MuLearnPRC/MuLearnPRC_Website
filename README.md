@@ -90,12 +90,12 @@ The website is built with vanilla HTML, CSS, and JavaScript for maximum performa
 - Scrollable table with sticky headers
 - Color-coded highlights for top performers
 
-### 🎪 **Events (Scalable 10-Photo Bento Layout)**
+### 📸 **Events (Scalable Adaptive Aspect-Ratio Bento Layout)**
 
-- Scalable horizontal marquee designed in modular clusters of exactly 10 photos at a time
-- Bento masonry structure featuring 5 varied columns (2 stacked, 2 split, 3 dual-row, 2 stacked, 1 full-height hero)
-- Fully scalable for any multiple of 10 photos statically or dynamically via `renderEventsGallery()`
-- Glassmorphic photo frames with hover scale, purple glow, and camera glyphs
+- Scalable horizontal marquee designed with an intelligent balanced bento rhythm (Full-Height Hero ↔ 2-Stacked Paired Columns)
+- **Zero-Crop Aspect Ratio Framing**: Each frame dynamically shrink-wraps the exact aspect ratio of each image (1:1 square, 4:5 portrait, 3:4 portrait, or landscape), ensuring 100% of event artwork and text is visible without letterboxing bars or cropped edges
+- **Arbitrary Photo Scalability**: Seamlessly scales from 10 photos to 50+ photos dynamically loaded from the live Google Sheet
+- Glassmorphic photo frames with neon hover scale, purple glow, and hover-to-pause marquee animation
 - Seamless 50% translation infinite loop
 
 ### 📸 **Gallery**
