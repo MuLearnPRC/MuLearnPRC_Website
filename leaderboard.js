@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-  const CSV_URL = 'https://docs.google.com/spreadsheets/d/1C3nNTx1Q9Bwer5AgK8N_4ZDiAbq7BGAh-wC2-puXjNQ/export?format=csv';
+  const CSV_URL = 'https://docs.google.com/spreadsheets/d/1aZSfgWH9AKmDjOsUasiYE29tMsAC8jR1/export?format=csv';
   const leaderboardBody = document.getElementById('leaderboard-body');
 
   // Load and parse CSV
