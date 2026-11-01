@@ -238,78 +238,92 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // --- Scalable 10-Photo Events Bento Renderer ---
+  // --- Scalable Adaptive Bento Events Renderer ---
   const EVENTS_CSV_URL = 'https://docs.google.com/spreadsheets/d/1k9kTBNXbByQWnK34ChZGNjt6FGqRC5smw4g7mYnZXl0/export?format=csv';
+
   const renderEventsGallery = (photoUrls) => {
     const track = document.getElementById('eventsTrack');
     if (!track || !Array.isArray(photoUrls) || photoUrls.length === 0) return;
 
-    // Helper to generate a single 10-photo bento set HTML
-    const build10PhotoSet = (photosSlice) => {
-      const p = [...photosSlice];
-      while (p.length < 10) p.push(null);
-
-      const renderFrame = (photo, flexStyle = '', index = 1) => {
-        const styleAttr = flexStyle ? ` style="${flexStyle}"` : '';
-        if (photo) {
-          return `
-            <div class="photo-frame"${styleAttr} data-index="${index}">
-              <img src="${photo}" alt="Event Photo ${index}" loading="lazy" onerror="this.parentElement.innerHTML='<div class=\\'photo-frame-inner\\'><svg class=\\'photo-icon\\' width=\\'22\\' height=\\'22\\' viewBox=\\'0 0 24 24\\' fill=\\'none\\' stroke=\\'currentColor\\' stroke-width=\\'1.8\\' stroke-linecap=\\'round\\' stroke-linejoin=\\'round\\'><rect x=\\'3\\' y=\\'3\\' width=\\'18\\' height=\\'18\\' rx=\\'4\\' ry=\\'4\\'></rect><circle cx=\\'8.5\\' cy=\\'8.5\\' r=\\'1.5\\'></circle><polyline points=\\'21 15 16 10 5 21\\'></polyline></svg><span>Add Photo</span></div>';">
-            </div>`;
-        }
+    const renderCard = (url, index) => {
+      if (url) {
         return `
-          <div class="photo-frame"${styleAttr} data-index="${index}">
-            <div class="photo-frame-inner">
-              <svg class="photo-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="4" ry="4"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
-              <span>Add Photo</span>
-            </div>
+          <div class="photo-frame" data-index="${index}">
+            <img src="${url}" alt="Event Poster ${index}" loading="lazy" onerror="this.parentElement.classList.add('placeholder-frame'); this.parentElement.innerHTML='<div class=\\'photo-frame-inner\\'><svg class=\\'photo-icon\\' width=\\'22\\' height=\\'22\\' viewBox=\\'0 0 24 24\\' fill=\\'none\\' stroke=\\'currentColor\\' stroke-width=\\'1.8\\' stroke-linecap=\\'round\\' stroke-linejoin=\\'round\\'><rect x=\\'3\\' y=\\'3\\' width=\\'18\\' height=\\'18\\' rx=\\'4\\' ry=\\'4\\'></rect><circle cx=\\'8.5\\' cy=\\'8.5\\' r=\\'1.5\\'></circle><polyline points=\\'21 15 16 10 5 21\\'></polyline></svg><span>Add Photo</span></div>';">
           </div>`;
-      };
-
+      }
       return `
-        <div class="events-group-10">
-          <div class="photo-col col-md">
-            ${renderFrame(p[0], '', 1)}
-            ${renderFrame(p[1], '', 2)}
-          </div>
-          <div class="photo-col col-sm">
-            ${renderFrame(p[2], 'flex: 1;', 3)}
-            ${renderFrame(p[3], 'flex: 1.5;', 4)}
-          </div>
-          <div class="photo-col col-lg">
-            ${renderFrame(p[4], 'flex: 1.5;', 5)}
-            <div class="photo-row" style="flex: 1;">
-              ${renderFrame(p[5], '', 6)}
-              ${renderFrame(p[6], '', 7)}
-            </div>
-          </div>
-          <div class="photo-col col-md">
-            ${renderFrame(p[7], 'flex: 1.3;', 8)}
-            ${renderFrame(p[8], 'flex: 1;', 9)}
-          </div>
-          <div class="photo-col col-lg">
-            ${renderFrame(p[9], '', 10)}
+        <div class="photo-frame placeholder-frame" data-index="${index}">
+          <div class="photo-frame-inner">
+            <svg class="photo-icon" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="4" ry="4"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
+            <span>Add Photo</span>
           </div>
         </div>`;
     };
 
-    // Chunk photos into sets of 10
-    let html = '';
-    for (let i = 0; i < photoUrls.length; i += 10) {
-      const slice = photoUrls.slice(i, i + 10);
-      html += build10PhotoSet(slice);
+    // Dynamic Balanced Bento Rhythm: Hero -> Paired -> Hero -> Paired...
+    let sequenceHtml = '';
+    let i = 0;
+    let heroTurn = true;
+    let photoIndex = 1;
+
+    while (i < photoUrls.length) {
+      if (heroTurn || i === photoUrls.length - 1) {
+        // Full-height Hero Card
+        sequenceHtml += `
+          <div class="photo-col-hero">
+            ${renderCard(photoUrls[i], photoIndex)}
+          </div>`;
+        i += 1;
+        photoIndex += 1;
+        heroTurn = false;
+      } else {
+        // 2-Stacked Paired Column
+        sequenceHtml += `
+          <div class="photo-col-paired">
+            ${renderCard(photoUrls[i], photoIndex)}
+            ${renderCard(photoUrls[i + 1], photoIndex + 1)}
+          </div>`;
+        i += 2;
+        photoIndex += 2;
+        heroTurn = true;
+      }
     }
-    // Duplicate for seamless infinite loop
-    track.innerHTML = html + html;
+
+    // Duplicate once for infinite seamless scrolling
+    track.innerHTML = sequenceHtml + sequenceHtml;
   };
+
   const loadEventsPhotosFromSheet = () => {
-    if (typeof Papa === 'undefined') return;
+    const parseFallbackJson = () => {
+      fetch('events_urls.json')
+        .then(res => res.json())
+        .then(urls => {
+          if (Array.isArray(urls) && urls.length > 0) {
+            const valid = urls.map(u => {
+              const m = u.match(/d\/([a-zA-Z0-9_-]+)/);
+              return m && m[1] ? 'https://lh3.googleusercontent.com/d/' + m[1] : u;
+            });
+            renderEventsGallery(valid);
+          }
+        })
+        .catch(e => console.warn('Fallback events JSON not loaded:', e));
+    };
+
+    if (typeof Papa === 'undefined') {
+      parseFallbackJson();
+      return;
+    }
+
     Papa.parse(EVENTS_CSV_URL, {
       download: true,
       header: false,
       complete: function(results) {
         const rows = results.data;
-        if (!rows || rows.length === 0) return;
+        if (!rows || rows.length === 0) {
+          parseFallbackJson();
+          return;
+        }
         const validUrls = [];
         rows.forEach(row => {
           const rawUrl = row[0];
@@ -321,10 +335,13 @@ document.addEventListener('DOMContentLoaded', () => {
         });
         if (validUrls.length > 0) {
           renderEventsGallery(validUrls);
+        } else {
+          parseFallbackJson();
         }
       },
       error: function(err) {
-        console.warn('Could not load events sheet CSV:', err);
+        console.warn('Could not load events sheet CSV, trying fallback:', err);
+        parseFallbackJson();
       }
     });
   };
