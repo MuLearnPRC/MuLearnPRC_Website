@@ -616,10 +616,10 @@ You are free to:
 ## Connect
 
 - 🌐 **Website:** https://mu-learn-prc-website.vercel.app
-- 📧 **Email:** info@mulearn.org
+- 📧 **Email:** prc.mulearn@providence.edu.in
 - 🌍 **MuLearn:** https://mulearn.org
-- 📱 **Instagram:** @mulearn_prc
-- 💼 **LinkedIn:** MuLearn Community
+- 📱 **Instagram:** [@mulearn.prc](https://instagram.com/mulearn.prc)
+- 💼 **LinkedIn:** [MuLearn PRC](https://www.linkedin.com/company/mulearn-prc/)
 
 ---
 
