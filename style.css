@@ -173,6 +173,7 @@ body {
 .main-content {
   position: relative;
   z-index: 2;
+  padding-top: 76px;
 }
 
 .blob-1 {
@@ -206,11 +207,15 @@ body {
    NAVIGATION HEADER
    ========================================== */
 .navbar-header {
-  position: sticky;
+  position: fixed;
   top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
   z-index: 100;
   background: var(--color-bg-card);
   backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   border-bottom: 1px solid var(--color-border);
 }
 
