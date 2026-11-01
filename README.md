@@ -90,6 +90,14 @@ The website is built with vanilla HTML, CSS, and JavaScript for maximum performa
 - Scrollable table with sticky headers
 - Color-coded highlights for top performers
 
+### 🎪 **Events (Scalable 10-Photo Bento Layout)**
+
+- Scalable horizontal marquee designed in modular clusters of exactly 10 photos at a time
+- Bento masonry structure featuring 5 varied columns (2 stacked, 2 split, 3 dual-row, 2 stacked, 1 full-height hero)
+- Fully scalable for any multiple of 10 photos statically or dynamically via `renderEventsGallery()`
+- Glassmorphic photo frames with hover scale, purple glow, and camera glyphs
+- Seamless 50% translation infinite loop
+
 ### 📸 **Gallery**
 
 - Infinite horizontal scrolling photo grid
